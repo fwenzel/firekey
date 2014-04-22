@@ -1,0 +1,18 @@
+{
+  "version": "0.1.0",
+  "name": "Firekey",
+  "description": "A two-factor auth (TOTP) token generator.",
+  "launch_path": "/index.html",
+  "icons": {
+    "16": "/img/icons/mortar-16.png",
+    "48": "/img/icons/mortar-48.png",
+    "60": "/img/icons/mortar-60.png",
+    "128": "/img/icons/mortar-128.png"
+  },
+  "developer": {
+    "name": "Fred Wenzel",
+    "url": "http://fredericiana.com"
+  },
+  "installs_allowed_from": ["*"],
+  "default_locale": "en"
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>FireKey</title>
+
+    <meta name="description" content="A TOTP 2-factor auth token generator.">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="brick/brick-1.0.1.min.css"/>
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+    <x-layout>
+      <header>
+        <h1>FireKey</h1>
+      </header>
+      <section>
+        <x-deck transition-type="fade-scale">
+          <x-card id="main">
+            Accounts!
+          </x-card>
+
+          <x-card id="add" data-title="Add Account">
+            <p><label>Site Name: <input type="text" id="addname"></input></label></p>
+            <p><label>Secret Key: <input type="text" id="addkey"></input></label></p>
+            <p>
+              <button class="add">Add</button>
+              <button class="cancel">Cancel</button>
+            </p>
+          </x-card>
+
+          <x-card id="welcome">
+            <p>Welcome to FireKey!</p>
+            <p>This is a simple "authenticator" app that allows you to generate 2-factor auth tokens for services using the <a href="http://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm">TOTP standard</a>, for example Google or GitHub.</p>
+            <p>Get started by adding an account.</p>
+            <button>Add account</button>
+          </x-card>
+        </x-deck>
+      </section>
+    </x-layout>
+
+    <script src="brick/brick-1.0.1.min.js"></script>
+    <script src="js/lib/localForage.js"></script>
+    <script src="js/lib/base32.js"></script>
+    <script src="js/lib/sha1.js"></script>
+    <script src="js/app.js"></script>
+
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
+  </body>
+</html>
