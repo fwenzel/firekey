@@ -22,38 +22,22 @@
   /* Given binary string `key`, create an OTP for the current time. */
   function createOTP(key) {
     var timestampHex = (Date.now()/30000 | 0).toString(16);
-    if (timestampHex.length % 2) {  // Byte-wise padding for HMAC
+    while (timestampHex.length < 16) {  // Pad to 16-digit hex number.
       timestampHex = '0' + timestampHex;
     }
 
-    //XXX
-    timestampHex = '0' + (1111111109 / 30 | 0).toString(16);
-    key = '3132333435363738393031323334353637383930';
-
     var shaObj = new jsSHA(timestampHex, 'HEX');
     var hmac = shaObj.getHMAC(key, 'HEX', 'SHA-1', 'HEX');
-    console.log(hmac);
-
-    var timecode = 1111111109 / 30 | 0;
-    var timebin = '';
-    while (timecode) {
-      var c = String.fromCharCode(timecode & 0xff); console.log(c);
-      timebin = c + timebin;
-      timecode >>= 1;
-    }
-    console.log(timebin);
-
-    key = '12345678901234567890';
-    hmac = CryptoJS.HmacSHA1(timebin, key).toString();
-    console.log(hmac.toString());
+    //console.log(hmac);
 
     // Dynamic truncation
     var chopIdx = parseInt(hmac[39], 16) * 2;  // Byte index to trucate at.
     var chopped = hmac.substr(chopIdx, 8);
+
     // Mask most significant bit.
     var hotp = parseInt(chopped, 16) & 0x7fffffff;
 
-    return hotp.toString().slice(-8);
+    return hotp.toString().slice(-6);  // Cut off last 6 digits, that's our code.
   }
 
 
