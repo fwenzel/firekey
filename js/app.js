@@ -8,27 +8,27 @@
 
 
   /** Beefy TOTP magic. */
-  /* Convert binary key string to HEX. */
+  /* Convert base32 key string to HEX. */
   function prepKey(key) {
-    var hexed = Array.prototype.map.call(
-      key, function(x) { return x.charCodeAt(0).toString(16); })
-    hexed = hexed.join('');
-    if (hexed.length % 2) {  // Byte-wise padding for HMAC
-      hexed = '0' + hexed;
-    }
-    return hexed;
+    var decoded = base32.decode(key);
+
+    // Turn every binary character into HEX encoding (zero-padded).
+    var hexed = Array.prototype.map.call(decoded, function(x) {
+      return ('0' + x.charCodeAt(0).toString(16)).slice(-2)
+    });
+
+    return hexed.join('');
   }
 
   /* Given binary string `key`, create an OTP for the current time. */
   function createOTP(key) {
-    var timestampHex = (Date.now()/30000 | 0).toString(16);
+    var timestampHex = (Date.now() / 30000 | 0).toString(16);
     while (timestampHex.length < 16) {  // Pad to 16-digit hex number.
       timestampHex = '0' + timestampHex;
     }
 
     var shaObj = new jsSHA(timestampHex, 'HEX');
     var hmac = shaObj.getHMAC(key, 'HEX', 'SHA-1', 'HEX');
-    //console.log(hmac);
 
     // Dynamic truncation
     var chopIdx = parseInt(hmac[39], 16) * 2;  // Byte index to trucate at.
@@ -87,7 +87,7 @@
       return;
     }
 
-    key = prepKey(base32.decode(key));
+    key = prepKey(key);
     if (!key) {
       alert('Invalid key. Did you misspell it?');
       return;
