@@ -4,8 +4,7 @@
 
 
 // RFC 4648.
-var alphabet = 'abcdefghjkmnpqrtuvwxyz234567'
-var alias = { o:0, i:1, l:1, s:5 }
+var alphabet = 'abcdefghijklmnopqrstuvwxyz234567';
 
 /**
  * Build a lookup table and memoize it
@@ -19,11 +18,6 @@ var lookup = function() {
     // Invert 'alphabet'
     for (var i = 0; i < alphabet.length; i++) {
         table[alphabet[i]] = i
-    }
-    // Splice in 'alias'
-    for (var key in alias) {
-        if (!alias.hasOwnProperty(key)) continue
-        table[key] = table['' + alias[key]]
     }
     lookup = function() { return table }
     return table
