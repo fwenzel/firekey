@@ -33,6 +33,23 @@ p {
     margin: 1rem 0;
 }
 
+#main meter {
+    height: .3rem;
+    position: absolute;
+    width: 100%;
+}
+
+#accounts {
+    height: 100%;
+    margin-top: .3rem;
+    overflow-y: scroll;
+}
+
+#accounts li {
+    border-bottom: 1px solid #444;
+    padding: 1em;
+}
+
 button {
     height: 3.8rem;
     margin: 0 0 1rem;

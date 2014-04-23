@@ -1,6 +1,7 @@
 (function() {
   /* Data */
   var accounts;
+  var refreshInterval;
 
   /* Shortcuts */
   var $ = document.querySelector.bind(document);
@@ -20,9 +21,9 @@
     return hexed.join('');
   }
 
-  /* Given binary string `key`, create an OTP for the current time. */
-  function createOTP(key) {
-    var timestampHex = (Date.now() / 30000 | 0).toString(16);
+  /* Given binary string `key` and timeslot, create an OTP. */
+  function createOTP(key, timeslot) {
+    var timestampHex = timeslot.toString(16);
     while (timestampHex.length < 16) {  // Pad to 16-digit hex number.
       timestampHex = '0' + timestampHex;
     }
@@ -55,11 +56,32 @@
 
   /* Main screen */
   function refreshAccounts() {
+    // Let's do this again sometime.
+    if (accounts && !refreshInterval) {
+      refreshInterval = window.setInterval(refreshAccounts, 1000);
+    }
+
+    var now = Date.now() / 1000 | 0;
+    var timeslot = now / 30 | 0;
+    var inSlot = now % 30 | 0;
+
+    $('#main meter').value = inSlot;
+
+    // Don't update tokens unless timeslot changed.
+    var curTimeslot = $('#accounts').getAttribute('data-timeslot');
+    if (curTimeslot === timeslot) {
+      return;
+    } else {
+      $('#accounts').setAttribute('data-timeslot', timeslot);
+    }
+
     for (var i=0; i<accounts.length; i++) {
       var acc = accounts[i];
-      var p = document.createElement('p');
-      p.textContent = acc['name'] + ': ' + createOTP(acc['key']);
-      $('#main').appendChild(p);
+      if (!acc.li) {
+        acc.li = document.createElement('li');
+        $('#accounts').appendChild(acc.li);
+      }
+      acc.li.textContent = acc['name'] + ': ' + createOTP(acc['key'], timeslot);
     }
   }
 
