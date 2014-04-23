@@ -160,7 +160,11 @@
 
   /* Add screen */
   $('#add .cancel').addEventListener('click', function() {
-    deck.selectedCard = $('#main');
+    if (accounts) {
+      deck.selectedCard = $('#main');
+    } else {
+      deck.selectedCard = $('#welcome');
+    }
   });
   $('#add .add').addEventListener('click', function() {
     var name = $('#addname').value;
