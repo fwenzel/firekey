@@ -54,6 +54,8 @@
     }
     // XXX this will plaster over other classes if present.
     $('#main-header').className = 'card-' + card.id;
+
+    deck.focus();
   });
 
 
