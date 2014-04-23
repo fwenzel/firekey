@@ -159,14 +159,7 @@
 
 
   /* Add screen */
-  $('#add .cancel').addEventListener('click', function() {
-    if (accounts) {
-      deck.selectedCard = $('#main');
-    } else {
-      deck.selectedCard = $('#welcome');
-    }
-  });
-  $('#add .add').addEventListener('click', function() {
+  function addAccount() {
     var name = $('#addname').value;
     var key = $('#addkey').value;
     if (!name || !key) {
@@ -183,6 +176,33 @@
       $('#accounts').removeAttribute('data-timeslot');  // Force refresh.
       deck.selectedCard = $('#main');
     });
+  }
+
+  $('#add').addEventListener('show', function() {
+    $('#addname').focus();
+  })
+
+  // Keyboard events.
+  $('#addname').addEventListener('keypress', function(e) {
+    console.log(e);
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      $('#addkey').focus();
+    }
+  });
+  $('#addkey').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      addAccount();
+    }
+  });
+
+  // Buttons
+  $('#add .add').addEventListener('click', addAccount);
+  $('#add .cancel').addEventListener('click', function() {
+    if (accounts) {
+      deck.selectedCard = $('#main');
+    } else {
+      deck.selectedCard = $('#welcome');
+    }
   });
 
 
