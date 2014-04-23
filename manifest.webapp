@@ -4,10 +4,13 @@
   "description": "A two-factor auth (TOTP) token generator.",
   "launch_path": "/index.html",
   "icons": {
-    "16": "/img/icons/mortar-16.png",
-    "48": "/img/icons/mortar-48.png",
-    "60": "/img/icons/mortar-60.png",
-    "128": "/img/icons/mortar-128.png"
+    "16": "/img/icons/token-16.png",
+    "32": "/img/icons/token-32.png",
+    "60": "/img/icons/token-60.png",
+    "90": "/img/icons/token-90.png",
+    "120": "/img/icons/token-120.png",
+    "128": "/img/icons/token-128.png",
+    "256": "/img/icons/token-256.png",
   },
   "developer": {
     "name": "Fred Wenzel",
