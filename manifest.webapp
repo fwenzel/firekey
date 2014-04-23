@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "1.0",
   "name": "Firekey",
   "description": "A two-factor auth (TOTP) token generator.",
   "launch_path": "/index.html",
