@@ -50,7 +50,7 @@
     if (card.hasAttribute('data-title')) {
       title.textContent = card.getAttribute('data-title');
     } else {
-      title.textContent = 'FireKey';
+      title.textContent = 'Firekey';
     }
     // XXX this will plaster over other classes if present.
     $('#main-header').className = 'card-' + card.id;
