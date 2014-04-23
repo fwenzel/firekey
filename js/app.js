@@ -186,7 +186,6 @@
 
   // Keyboard events.
   $('#addname').addEventListener('keypress', function(e) {
-    console.log(e);
     if (e.key === 'Enter' || e.keyCode === 13) {
       $('#addkey').focus();
     }
