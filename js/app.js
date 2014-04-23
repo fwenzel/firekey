@@ -68,7 +68,7 @@
     $('#main meter').value = inSlot;
 
     // Don't update tokens unless timeslot changed.
-    var curTimeslot = $('#accounts').getAttribute('data-timeslot');
+    var curTimeslot = parseInt($('#accounts').getAttribute('data-timeslot'));
     if (curTimeslot === timeslot) {
       return;
     } else {
