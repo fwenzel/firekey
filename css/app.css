@@ -33,6 +33,22 @@ p {
     margin: 1rem 0;
 }
 
+button {
+    height: 3.8rem;
+    margin: 0 0 1rem;
+    padding: 0 1.5rem;
+    background: #fafafa;
+    border: 0.1rem solid #a6a6a6;
+    border-radius: 0.2rem;
+    font-size: 1.6rem;
+    line-height: 3.8rem;
+    color: #333;
+    text-align: center;
+    text-shadow: 0.1rem 0.1rem 0 rgba(255,255,255,0.3);
+    text-decoration: none;
+    outline: none;
+}
+
 #main-header .add {
     display: none;
 }
@@ -44,6 +60,11 @@ p {
     position: absolute;
     right: .5rem;
     top: .8rem;
+}
+
+#welcome,
+#add {
+    padding: 0 1rem;
 }
 
 #main meter {
@@ -75,22 +96,6 @@ p {
     padding: 0 .5rem;
     position: absolute;
     right: 1rem;
-}
-
-button {
-    height: 3.8rem;
-    margin: 0 0 1rem;
-    padding: 0 1.5rem;
-    background: #fafafa;
-    border: 0.1rem solid #a6a6a6;
-    border-radius: 0.2rem;
-    font-size: 1.6rem;
-    line-height: 3.8rem;
-    color: #333;
-    text-align: center;
-    text-shadow: 0.1rem 0.1rem 0 rgba(255,255,255,0.3);
-    text-decoration: none;
-    outline: none;
 }
 
 #add input {
