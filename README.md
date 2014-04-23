@@ -1,7 +1,7 @@
 # Firekey
 by Fred Wenzel ``<fwenzel@mozilla.com>``
 
-![logo](https://github.com/fwenzel/firekey/blob/gh-pages/img/icons/token-128.png)
+![logo](https://raw.githubusercontent.com/fwenzel/firekey/gh-pages/img/token-128.png)
 
 A TOTP Token generator (like Google Authenticator, except for the Web).
 
