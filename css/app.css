@@ -33,6 +33,19 @@ p {
     margin: 1rem 0;
 }
 
+#main-header .add {
+    display: none;
+}
+#main-header.card-main .add {
+    display: block;
+    height: 3rem;
+    line-height: 1rem;
+    padding: .3rem;
+    position: absolute;
+    right: .5rem;
+    top: .8rem;
+}
+
 #main meter {
     height: .3rem;
     position: absolute;
@@ -48,6 +61,20 @@ p {
 #accounts li {
     border-bottom: 1px solid #444;
     padding: 1em;
+}
+
+#main > .delete {
+    display: none;
+}
+#accounts .delete {
+    background-color: #c00;
+    color: #fff;
+    font-size: .9rem;
+    height: 2.2rem;
+    line-height: .9rem;
+    padding: 0 .5rem;
+    position: absolute;
+    right: 1rem;
 }
 
 button {

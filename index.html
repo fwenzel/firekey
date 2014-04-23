@@ -15,8 +15,9 @@
   </head>
   <body>
     <x-layout>
-      <header>
+      <header id="main-header">
         <h1>FireKey</h1>
+        <button class="add">+</button>
       </header>
       <section>
         <x-deck transition-type="fade-scale">
@@ -24,6 +25,8 @@
             <meter max="30"></meter>
 
             <ul id="accounts"></ul>
+
+            <button class="delete">Delete</button>
           </x-card>
 
           <x-card id="add" data-title="Add Account">
@@ -47,6 +50,7 @@
 
     <script src="brick/brick-1.0.1.min.js"></script>
     <script src="js/lib/localForage.js"></script>
+    <script src="js/lib/pointer.min.js"></script>
     <script src="js/lib/base32.js"></script>
     <script src="js/lib/sha1.js"></script>
     <script src="js/app.js"></script>

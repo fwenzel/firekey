@@ -1,6 +1,7 @@
 (function() {
   /* Data */
   var accounts;
+  var lis = [];  // list items for accounts.
   var refreshInterval;
 
   /* Shortcuts */
@@ -51,6 +52,8 @@
     } else {
       title.textContent = 'FireKey';
     }
+    // XXX this will plaster over other classes if present.
+    $('#main-header').className = 'card-' + card.id;
   });
 
 
@@ -77,13 +80,71 @@
 
     for (var i=0; i<accounts.length; i++) {
       var acc = accounts[i];
-      if (!acc.li) {
-        acc.li = document.createElement('li');
-        $('#accounts').appendChild(acc.li);
+      var li;
+      if (lis[i]) {
+        li = lis[i];
+      } else {
+        li = document.createElement('li');
+        lis.push(li);
+        $('#accounts').appendChild(li);
       }
-      acc.li.textContent = acc['name'] + ': ' + createOTP(acc['key'], timeslot);
+      li.textContent = acc['name'] + ': ' + createOTP(acc['key'], timeslot);
     }
   }
+
+  function stopUpdating() {
+    window.clearInterval(refreshInterval);
+    refreshInterval = null;
+  }
+
+  // Long click for delete.
+  $('#main .delete').addEventListener('click', function() {
+    var delButton = this;
+    var li = this.parentNode;
+    var i = Array.prototype.indexOf.call(li.parentNode.childNodes, li);
+
+    accounts.splice(i, 1);
+    localforage.setItem('accounts', accounts).then(function() {
+      lis.splice(i, 1);
+      $('#main').appendChild(delButton);
+      li.parentNode.removeChild(li);
+    })
+
+    //refresh
+  });
+  var pressTimer;
+  $('#accounts').addEventListener('pointerup', function() {
+    window.clearTimeout(pressTimer);
+    return false;
+  });
+  $('#accounts').addEventListener('pointerdown', function(e) {
+    pressTimer = window.setTimeout(function() {
+      if (e.target.tagName.toLowerCase() != 'li') return;
+
+      stopUpdating();
+
+      var delButton = $('#main .delete');
+      e.target.appendChild(delButton);
+
+      // Catch delete button un-click in a second or so.
+      window.setTimeout(function() {
+        function reset() {
+          $('#main').appendChild($('#main .delete'));
+          document.body.removeEventListener('click', reset);
+          refreshAccounts();
+        }
+        document.body.addEventListener('click', reset);
+      }, 1500);
+
+    }, 1000);
+    return false;
+  });
+
+  // Main add button.
+  $('#main-header .add').addEventListener('click', function() {
+    stopUpdating();
+    deck.selectedCard = $('#add');
+  });
 
   $('#main').addEventListener('show', function() {
     refreshAccounts();
@@ -110,13 +171,12 @@
     }
 
     key = prepKey(key);
-    if (!key) {
-      alert('Invalid key. Did you misspell it?');
-      return;
-    }
 
     accounts.push({name: name, key: key});
     localforage.setItem('accounts', accounts).then(function() {
+      $('#addname').value = '';
+      $('#addkey').value = '';
+      $('#accounts').removeAttribute('data-timeslot');  // Force refresh.
       deck.selectedCard = $('#main');
     });
   });
