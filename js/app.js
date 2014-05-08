@@ -110,10 +110,13 @@
       lis.splice(i, 1);
       $('#main').appendChild(delButton);
       li.parentNode.removeChild(li);
-    })
 
-    //refresh
+      if (accounts.length === 0) {
+        stopUpdating();
+      }
+    })
   });
+
   var pressTimer;
   $('#accounts').addEventListener('pointerup', function() {
     window.clearTimeout(pressTimer);
