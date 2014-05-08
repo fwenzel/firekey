@@ -199,7 +199,7 @@
   // Buttons
   $('#add .add').addEventListener('click', addAccount);
   $('#add .cancel').addEventListener('click', function() {
-    if (accounts) {
+    if (accounts.length > 0) {
       deck.selectedCard = $('#main');
     } else {
       deck.selectedCard = $('#welcome');
@@ -212,7 +212,7 @@
     localforage.getItem('accounts').then(function(data) {
       accounts = data;
 
-      if (accounts) {
+      if (accounts && accounts.length > 0) {
         deck.selectedCard = $('#main');
       } else {
         accounts = [];
