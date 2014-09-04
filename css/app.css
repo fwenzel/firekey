@@ -75,13 +75,26 @@ button {
 
 #accounts {
     height: 100%;
+    line-height: 1;
     margin-top: .3rem;
     overflow-y: scroll;
+    text-align: center;
 }
 
 #accounts li {
     border-bottom: 1px solid #444;
     padding: 1em;
+    position: relative;
+}
+
+#accounts .name {
+    font-size: 80%;
+}
+#accounts .num {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 4px;
 }
 
 #main > .delete {
@@ -96,6 +109,7 @@ button {
     padding: 0 .5rem;
     position: absolute;
     right: 1rem;
+    top: 2rem;
 }
 
 #add input[type=text] {

@@ -89,8 +89,19 @@
         li = document.createElement('li');
         lis.push(li);
         $('#accounts').appendChild(li);
+
+        var span = document.createElement('span');
+        span.setAttribute('class', 'num');
+        li.appendChild(span);
+
+        var span = document.createElement('span');
+        span.setAttribute('class', 'name');
+        li.appendChild(span);
       }
-      li.textContent = acc['name'] + ': ' + createOTP(acc['key'], timeslot);
+
+      // Show account name and latest code.
+      li.querySelector('.name').textContent = acc['name'];
+      li.querySelector('.num').textContent = createOTP(acc['key'], timeslot);
     }
   }
 
@@ -126,12 +137,21 @@
   });
   $('#accounts').addEventListener('pointerdown', function(e) {
     pressTimer = window.setTimeout(function() {
-      if (e.target.tagName.toLowerCase() != 'li') return;
+      var li;
+
+      if (['li', 'span'].indexOf(e.target.tagName.toLowerCase()) === -1) {
+        return;
+      } else if (e.target.matches('li>span')) {
+        li = e.target.parentNode;
+      } else {
+        li = e.target;
+      }
+
 
       stopUpdating();
 
       var delButton = $('#main .delete');
-      e.target.appendChild(delButton);
+      li.appendChild(delButton);
 
       // Catch delete button un-click in a second or so.
       window.setTimeout(function() {
