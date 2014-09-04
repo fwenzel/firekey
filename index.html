@@ -32,6 +32,12 @@
           <x-card id="add" data-title="Add Account">
             <p><label>Site Name: <input type="text" id="addname"></input></label></p>
             <p><label>Secret Key: <input type="text" id="addkey"></input></label></p>
+            <p id="keytype">
+              Key format:
+              <label><input type="radio" name="keytype" value="b32"> Base 32</label>
+              <label><input type="radio" name="keytype" value="hex"> Hex</label>
+              (Most services use Base 32 keys.)
+            </p>
             <p>
               <button class="add">Add</button>
               <button class="cancel">Cancel</button>

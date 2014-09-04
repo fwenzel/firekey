@@ -98,8 +98,16 @@ button {
     right: 1rem;
 }
 
-#add input {
+#add input[type=text] {
     display: block;
     font-size: 1.6rem;
     width: 100%;
+}
+
+#keytype {
+    display: block;
+    width: 100%;
+}
+#keytype label {
+    margin: .5em;
 }

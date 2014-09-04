@@ -113,6 +113,8 @@
 
       if (accounts.length === 0) {
         stopUpdating();
+      } else {
+        refreshAccounts();
       }
     })
   });
@@ -172,7 +174,15 @@
       return;
     }
 
-    key = prepKey(key);
+    if ($('#keytype input[value=b32]').checked) {  // Base32 key?
+      key = prepKey(key);
+    } else {
+      // Enforce an actual hex number.
+      if (!(/^[0-9a-f]+$/i).test(key)) {
+        alert('Invalid hex number!');
+        return;
+      }
+    }
 
     accounts.push({name: name, key: key});
     localforage.setItem('accounts', accounts).then(function() {
@@ -184,6 +194,7 @@
   }
 
   $('#add').addEventListener('show', function() {
+    $('#keytype input[value=b32]').checked = true;
     $('#addname').focus();
   })
 
