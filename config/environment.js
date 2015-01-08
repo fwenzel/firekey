@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'firekey-ember',
+    modulePrefix: 'firekey',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
