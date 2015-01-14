@@ -1,3 +1,126 @@
+* {
+    padding: 0;
+    margin: 0;
+    -moz-box-sizing: border-box;
+}
+
 html, body {
-  margin: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    line-height: 1.6;
+    background: #fefefe;
+}
+
+h1 {
+    background: #444545;
+    color: #fff;
+    padding: 0.75rem 0.5rem;
+    text-shadow: 2px 2px 1px #111;
+    text-align: center;
+    font-weight: normal;
+    border-bottom: 1px solid #444;
+}
+
+p {
+    margin: 1rem 0;
+}
+
+button,
+a.button {
+    display: inline-block;
+    height: 3.8rem;
+    margin: 0 0 1rem;
+    padding: 0 1.5rem;
+    background: #fafafa;
+    border: 0.1rem solid #a6a6a6;
+    border-radius: 0.2rem;
+    font-size: 1.6rem;
+    line-height: 3.8rem;
+    color: #333;
+    text-align: center;
+    text-shadow: 0.1rem 0.1rem 0 rgba(255,255,255,0.3);
+    text-decoration: none;
+    outline: none;
+}
+
+#main-header .add {
+    display: none;
+}
+#main-header.card-main .add {
+    display: block;
+    height: 3rem;
+    line-height: 1rem;
+    padding: .3rem;
+    position: absolute;
+    right: .5rem;
+    top: .8rem;
+}
+
+#welcome,
+#add {
+    padding: 0 1rem;
+}
+
+#main meter {
+    height: .3rem;
+    position: absolute;
+    width: 100%;
+}
+
+#accounts {
+    height: 100%;
+    line-height: 1;
+    margin-top: .3rem;
+    overflow-y: scroll;
+    text-align: center;
+}
+
+#accounts li {
+    border-bottom: 1px solid #444;
+    padding: 1em;
+    position: relative;
+}
+
+#accounts .name {
+    font-size: 80%;
+}
+#accounts .num {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+#main > .delete {
+    display: none;
+}
+#accounts .delete {
+    background-color: #c00;
+    color: #fff;
+    font-size: .9rem;
+    height: 2.2rem;
+    line-height: .9rem;
+    padding: 0 .5rem;
+    position: absolute;
+    right: 1rem;
+    top: 2rem;
+}
+
+#add input[type=text] {
+    display: block;
+    font-size: 1.6rem;
+    width: 100%;
+}
+
+#keytype {
+    display: block;
+    width: 100%;
+}
+#keytype label {
+    margin: .5em;
 }
