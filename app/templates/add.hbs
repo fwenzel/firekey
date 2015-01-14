@@ -1,0 +1,12 @@
+<p><label>Site Name: {{input type="text" id="addname" autofocus=''}}</label></p>
+<p><label>Secret Key: {{input type="text" id="addkey"}}</label></p>
+<p id="keytype">
+  Key format:
+  <label>{{input type="radio" name="keytype" value="b32"}} Base 32</label>
+  <label>{{input type="radio" name="keytype" value="hex"}} Hex</label>
+  (Most services use Base 32 keys.)
+</p>
+<p>
+  <button class="add" {{action 'add'}}>Add</button>
+  <button class="cancel" {{action 'cancel'}}>Cancel</button>
+</p>
