@@ -6,8 +6,19 @@ export default Ember.View.extend({
     Ember.run.scheduleOnce('afterRender', this, this.afterRenderEvent);
   },
   afterRenderEvent: function() {
-    // Set default form state upon load.
+  	// Listen to errors from the controller.
+  	this.get('controller').on('formError', this, this.showError);
+
+    // Focus first input field.
     $('input[autofocus]').focus();
-    $('input[value=b32]').attr('checked', true);
+  },
+  willClearRender: function() {
+  	// Unsubscribe from listening to the controller.
+  	this.get('controller').off('formError', this, this.showError);
+  },
+
+  // Flash an error alert if the controller finds a problem.
+  showError: function(msg) {
+  	window.alert(msg);
   }
 });

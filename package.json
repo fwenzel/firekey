@@ -4,8 +4,8 @@
   "description": "A two-factor auth (TOTP) token generator.",
   "author": {
     "name": "Fred Wenzel",
-    "email" : "fwenzel@mozilla.com",
-    "url" : "http://fredericiana.com"
+    "email": "fwenzel@mozilla.com",
+    "url": "http://fredericiana.com"
   },
   "private": true,
   "directories": {
@@ -35,6 +35,7 @@
     "ember-cli-qunit": "0.1.2",
     "ember-data": "1.0.0-beta.12",
     "ember-export-application-global": "^1.0.0",
+    "ember-localforage-adapter": "^0.6.7",
     "express": "^4.8.5",
     "glob": "^4.0.5"
   }
