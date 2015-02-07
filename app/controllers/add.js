@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend(Ember.Evented, {
-	// Non-model fields:
-	keytype: null,
+  // Non-model fields:
+  keytype: null,
 
-	/* Convert base32 key string to HEX. */
+  /* Convert base32 key string to HEX. */
   b32ToHex: function(key) {
     var decoded = base32.decode(key);
 
@@ -19,27 +19,36 @@ export default Ember.Controller.extend(Ember.Evented, {
   actions: {
     /* Save a new key */
     add: function() {
-    	if (!this.model.get('name')) {
-    		this.trigger('formError', 'Your key needs a name!');
-    		return;
-    	} else if (!this.model.get('key')) {
-    		this.trigger('formError', 'Cannot store an empty key!');
-    		return;
-    	}
+      if (!this.model.get('name') || !this.model.get('key')) {
+        this.trigger('formError', 'Please enter both name and shared secret!');
+        return;
+      }
 
-    	if (this.keytype === 'b32') {
-    		this.model.set('key', this.b32ToHex(this.model.get('key')));
-    	}
+      if (this.keytype === 'b32') {
+        try {
+          this.model.set('key', this.b32ToHex(this.model.get('key')));
+        } catch (e) {
+          this.trigger('formError', e.message);
+          return;
+        }
+        this.set('keytype', 'hex');
+      } else {
+        if (!(/^[0-9a-f]+$/i).test(this.model.get('key'))) {
+          alert('Invalid hex number!');
+          return;
+        }
+      }
 
-    	// TODO Error handling would be good, I suppose.
-    	this.model.save().then(function() {
-    		this.transitionToRoute('main');
-    	});
+      // TODO Error handling would be good, I suppose.
+      var ctrl = this;
+      this.model.save().then(function() {
+        ctrl.transitionToRoute('keys');
+      });
     },
 
     /* Cancel and go back to front page */
     cancel: function() {
-    	this.transitionToRoute('index');
+      this.transitionToRoute('index');
     }
   }
 });

@@ -1,7 +1,9 @@
-<header id="main-header">
-  <h1>Firekey</h1>
-  {{#if headerAdd}}<button>+</button>{{/if}}
-</header>
-<section {{bind-attr id=currentPath}}>
-  {{outlet}}
-</section>
+<div {{bind-attr id=routeName}}>
+  <header id="main-header">
+    <h1>Firekey</h1>
+    <button class="add">+</button>
+  </header>
+  <section>
+    {{outlet}}
+  </section>
+</div>

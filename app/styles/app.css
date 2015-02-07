@@ -51,7 +51,7 @@ a.button {
 #main-header .add {
     display: none;
 }
-#main-header.card-main .add {
+#keys-index #main-header .add {
     display: block;
     height: 3rem;
     line-height: 1rem;
@@ -66,9 +66,9 @@ a.button {
     padding: 0 1rem;
 }
 
-#main meter {
+#keys-index meter {
+    display: block;
     height: .3rem;
-    position: absolute;
     width: 100%;
 }
 
@@ -96,7 +96,7 @@ a.button {
     letter-spacing: 4px;
 }
 
-#main > .delete {
+#keys-index > .delete {
     display: none;
 }
 #accounts .delete {

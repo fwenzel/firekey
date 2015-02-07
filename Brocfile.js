@@ -18,5 +18,6 @@ var app = new EmberApp();
 // along with the exports of each module as its value.
 
 app.import('vendor/base32.js');
+app.import('vendor/sha_dev.js');
 
 module.exports = app.toTree();

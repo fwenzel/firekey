@@ -2,10 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   redirect: function() {
-  	//TODO: remove this when main page exists.
-		this.transitionTo('welcome');
-		return;
-
     var route = this;
 
     this.store.find('key').then(function(keys) {

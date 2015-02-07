@@ -11,11 +11,11 @@ var App = Ember.Application.extend({
   Resolver: Resolver,
   ApplicationController: Ember.Controller.extend({
     updateCurrentPath: function() {
-      this.set('currentPath', this.get('currentPath'));
-    }.observes('currentPath')
+      this.set('routeName', this.get('currentRouteName').replace(/\./g, '-'));
+    }.observes('currentRouteName')
   }),
 
-  currentPath: ''  // Export current route to template.
+  routeName: ''  // Export current route to template, with dashes.
 });
 
 loadInitializers(App, config.modulePrefix);

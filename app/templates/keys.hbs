@@ -1,1 +1,10 @@
-{{outlet}}
+<meter max="30" {{bind-attr value=inTimeslot}}></meter>
+
+<ul id="accounts">
+  {{#each model}}
+    <li>
+      <span class="num">{{token}}</span>
+      <span class="name">{{name}}</span>
+    </li>
+  {{/each}}
+</ul>

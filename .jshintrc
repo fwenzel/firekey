@@ -3,7 +3,8 @@
     "document",
     "window",
     "-Promise",
-    "base32"
+    "base32",
+    "jsSHA"
   ],
   "browser": true,
   "boss": true,

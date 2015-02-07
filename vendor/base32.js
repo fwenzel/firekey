@@ -43,8 +43,8 @@ function Decoder() {
         var val = lookup()[char]
         if (typeof val == 'undefined') {
             // character does not exist in our lookup table
-            return // skip silently. An alternative would be:
-            // throw Error('Could not find character "' + char + '" in lookup table.')
+            //return // skip silently. An alternative would be:
+            throw Error('Character "' + char + '" is not valid.')
         }
         val <<= 3 // move to the high bits
         byte |= val >>> skip
@@ -66,7 +66,12 @@ function Decoder() {
     }
 }
 
-Decoder.prototype.update = function(input, flush) {
+Decoder.prototype.update = function(input, flush, ignore_whitespace) {
+    // Ignore whitespace by default.
+    if (typeof ignore_whitespace === 'undefined' || ignore_whitespace) {
+        input = input.replace(/\s+/g, '');
+    }
+
     for (var i = 0; i < input.length; i++) {
         this.readChar(input[i])
     }
