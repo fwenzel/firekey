@@ -34,7 +34,7 @@ export default Ember.Controller.extend(Ember.Evented, {
         this.set('keytype', 'hex');
       } else {
         if (!(/^[0-9a-f]+$/i).test(this.model.get('key'))) {
-          alert('Invalid hex number!');
+          this.trigger('formError', 'Invalid hex number!');
           return;
         }
       }
