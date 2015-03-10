@@ -1,0 +1,10 @@
+<header>
+  {{#link-to 'index' class="back button"}}&larr;{{/link-to}}
+  <h1>{{model.name}}</h1>
+</header>
+<section>
+  <ul>
+    <li><button {{action 'editName' model target=view}}>Edit name</button></li>
+    <li><button class="delete" {{action 'confirmDeleteKey' model target=view}}>Delete</button></li>
+  </ul>
+</section>

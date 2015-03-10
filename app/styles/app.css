@@ -48,6 +48,12 @@ a.button {
     outline: none;
 }
 
+button.delete {
+    background: #C80815;
+    color: #fafafa;
+    text-shadow: none;
+}
+
 header .button {
     display: block;
     height: 2rem;
@@ -123,17 +129,14 @@ header .opt {
 }
 
 #key-edit ul {
-    border-top: 1px solid #444;
     height: 100%;
     line-height: 1;
-    margin-top: .3rem;
+    margin-top: 1rem;
     overflow-y: scroll;
     text-align: center;
 }
 
 #key-edit li {
-    border-bottom: 1px solid #444;
     list-style: none;
-    padding: 1em;
     position: relative;
 }
