@@ -1,9 +1,12 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(Ember.Evented, {
   slotsize: 30,  // TOTP operates on 30-second time windows.
   timeslot: null,  // Current time window.
   inTimeslot: null,  // Position inside current timeslot.
+
+  nextUpdate: null,  // Timer for next timeslot update.
+
 
   updateTimeslot: function() {
     var now = Date.now() / 1000 | 0;
@@ -11,18 +14,38 @@ export default Ember.Controller.extend({
     this.set('inTimeslot', now % this.slotsize | 0);
 
     // Do this every second from now on.
-    Ember.run.later(this, this.updateTimeslot, 1000);
+    this.set('nextUpdate', Ember.run.later(this, this.updateTimeslot, 1000));
   }.observes('model'),  // Trigger when model data arrives.
 
-  /* Calculate updated OTP tokens for all our keys. */
+  /**
+   * Keep update loop from running.
+   * To reschedule, trigger updateTimeslot again.
+   */
+  stopUpdating: function() {
+    if (!this.nextUpdate) {
+      return;
+    }
+
+    Ember.run.cancel(this.nextUpdate);
+    this.set('nextUpdate', null);
+  },
+
+  /** Calculate updated OTP tokens for all our keys. */
   updateTokens: function() {
+    // Without data, we're out of luck.
+    // (Can happen when forcing an update without data.)
+    if (!this.get('model')) {
+      return;
+    }
+
     var ctrl = this;
     this.model.forEach(function(key) {
       key.set('token', ctrl.createOTP(key));
     });
-  }.observes('timeslot'),
+  }.observes('timeslot')  // Run on every time slot change.
+   .on('refreshKeys'),  // Can be triggered by refreshKeys event.
 
-  /* Given a key (model), calculate its current OTP token. */
+  /** Given a key (model), calculate its current OTP token. */
   createOTP: function(model) {
     var timestampHex = this.timeslot.toString(16);
     while (timestampHex.length < 16) {  // Pad to 16-digit hex number.

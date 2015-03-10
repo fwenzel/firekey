@@ -70,8 +70,8 @@ header .opt {
     right: .5rem;
 }
 
-#welcome > section,
-#add > section {
+#welcome section,
+#add section {
     padding: 0 1rem;
 }
 

@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend(Ember.Evented, {
+  needs: ['keys'],
+
   // Non-model fields:
   keytype: null,
 
@@ -42,12 +44,16 @@ export default Ember.Controller.extend(Ember.Evented, {
       // TODO Error handling would be good, I suppose.
       var ctrl = this;
       this.model.save().then(function() {
+        ctrl.get('controllers.keys').trigger('refreshKeys');
         ctrl.transitionToRoute('keys');
       });
     },
 
     /* Cancel and go back to front page */
     cancel: function() {
+      // Discard this draft key.
+      this.get('model').deleteRecord();
+
       this.transitionToRoute('index');
     }
   }

@@ -99,6 +99,7 @@ function decode(input) {
 var base32 = {
     Decoder: Decoder,
     decode: decode,
+    alphabet: alphabet
 }
 
 if (typeof window !== 'undefined') {
