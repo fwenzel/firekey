@@ -1,10 +1,17 @@
-<meter {{bind-attr max=slotsize}} {{bind-attr value=inTimeslot}}></meter>
+<header>
+  <h1>Firekey</h1>
+  {{#link-to 'add' class="opt button"}}+{{/link-to}}
+</header>
+<section>
+  <meter {{bind-attr max=slotsize}} {{bind-attr value=inTimeslot}}></meter>
 
-<ul id="accounts">
-  {{#each model}}
-    <li>
-      <span class="num">{{token}}</span>
-      <span class="name">{{name}}</span>
-    </li>
-  {{/each}}
-</ul>
+  <ul id="accounts">
+    {{#each model}}
+      <li>
+        <span class="num">{{token}}</span>
+        <span class="name">{{name}}</span>
+        {{#link-to 'key.edit' id class="opt"}}&vellip;{{/link-to}}
+      </li>
+    {{/each}}
+  </ul>
+</section>
