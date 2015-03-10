@@ -53,16 +53,17 @@ a.button {
 }
 #keys-index #main-header .add {
     display: block;
-    height: 3rem;
+    height: 2rem;
     line-height: 1rem;
     padding: .3rem;
     position: absolute;
     right: .5rem;
     top: .8rem;
+    width: 2rem;
 }
 
-#welcome,
-#add {
+#welcome > section,
+#add > section {
     padding: 0 1rem;
 }
 
@@ -94,6 +95,15 @@ a.button {
     font-size: 3rem;
     font-weight: bold;
     letter-spacing: 4px;
+}
+#accounts .opt {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: .8rem;
+    color: #333;
+    text-decoration: none;
 }
 
 #keys-index > .delete {

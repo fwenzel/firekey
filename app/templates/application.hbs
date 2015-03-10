@@ -1,7 +1,7 @@
 <div {{bind-attr id=routeName}}>
   <header id="main-header">
     <h1>Firekey</h1>
-    <button class="add">+</button>
+    {{#link-to 'add' class="add button"}}+{{/link-to}}
   </header>
   <section>
     {{outlet}}
