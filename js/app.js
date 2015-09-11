@@ -248,6 +248,7 @@
 
       if (accounts && accounts.length > 0) {
         deck.selectedCard = $('#main');
+        refreshAccounts();
       } else {
         accounts = [];
         deck.selectedCard = $('#welcome');
