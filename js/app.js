@@ -1,4 +1,10 @@
 (function() {
+  // Hackedy hack: If we run on http, redirect.
+  if (window.location.toString().indexOf('http://firekey') === 0) {
+    window.location = 'https://firekey.org';
+    return;
+  }
+
   /* Data */
   var accounts;
   var lis = [];  // list items for accounts.
