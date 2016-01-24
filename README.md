@@ -1,5 +1,5 @@
 # Firekey
-by Fred Wenzel ``<fwenzel@mozilla.com>``
+by Fred Wenzel `<code@wenzel.io>`
 
 ![logo](https://raw.githubusercontent.com/fwenzel/firekey/gh-pages/img/icons/token-128.png)
 
