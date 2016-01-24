@@ -9,6 +9,7 @@
   var accounts;
   var lis = [];  // list items for accounts.
   var refreshInterval;
+  var refreshing = false; // Indicates whether we should refresh the page
 
   /* Shortcuts */
   var $ = document.querySelector.bind(document);
@@ -67,6 +68,12 @@
 
   /* Main screen */
   function refreshAccounts() {
+    refreshing = true;
+
+    if (document.hidden) {
+      return; // Do not refresh when hidden
+    }
+
     // Let's do this again sometime.
     if (accounts && !refreshInterval) {
       refreshInterval = window.setInterval(refreshAccounts, 1000);
@@ -112,9 +119,22 @@
   }
 
   function stopUpdating() {
+    refreshing = false;
     window.clearInterval(refreshInterval);
     refreshInterval = null;
   }
+
+  window.addEventListener('visibilitychange', function(evt) {
+    if (document.hidden) {
+      window.clearInterval(refreshInterval);
+      refreshInterval = null;
+    } else {
+      if (refreshing) {
+        // Resume refreshing only if we hadn't stopped before
+        refreshAccounts();
+      }
+    }
+  });
 
   // Long click for delete.
   $('#main .delete').addEventListener('click', function() {
